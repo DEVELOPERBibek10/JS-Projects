@@ -17,8 +17,7 @@ fetchData();
 function showProducts(data) {
   let productsHTML = data
     .map((item) => {
-      return;
-      <div class="waffle product-item">
+      return `<div class="waffle product-item">
         <div class="prod-img">
           <img
             class="item-img"
@@ -65,7 +64,7 @@ function showProducts(data) {
           <p class="item-full-name">${item.name}</p>
           <span class="price">$${item.price}</span>
         </div>
-      </div>;
+      </div>`;
     })
     .join("");
   products.innerHTML = productsHTML;
@@ -95,8 +94,8 @@ function showProducts(data) {
 products.addEventListener("DOMContentLoaded", showProducts);
 
 function addToCart(name, price, cartBtn, itemImg) {
-  let cartItem = (
-    <div class="prod-item" id="prod1">
+  let cartItem = `
+   <div class="prod-item" id="prod1">
       <div class="title-btn">
         <p class="prodName">${name}</p>
         <span class="clsBtn">
@@ -109,8 +108,7 @@ function addToCart(name, price, cartBtn, itemImg) {
         <span class="perPrice">@ $${price}</span>
         <span class="perTtlPrice">$${price}</span>
       </div>
-    </div>
-  );
+    </div>`;
   addedProd.insertAdjacentHTML("afterbegin", cartItem);
   addedProd.classList.add("active");
 

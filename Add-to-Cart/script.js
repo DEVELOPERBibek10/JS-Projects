@@ -1,4 +1,3 @@
-// Cache common elements for reuse
 const products = document.querySelector(".products");
 const addedProd = document.querySelector(".addedProd");
 const illustrationEmptyCart = document.querySelector(
@@ -19,7 +18,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// Render product items to the DOM
 function renderProducts(data) {
   const fragment = document.createDocumentFragment();
 
@@ -50,7 +48,6 @@ function renderProducts(data) {
   products.appendChild(fragment);
 }
 
-// Unified function for adding/removing items from the cart
 function toggleCartItem(btn, addToCart) {
   const prodName = btn.dataset.name;
   const prodPrice = parseFloat(btn.dataset.price);
@@ -92,7 +89,6 @@ function toggleCartItem(btn, addToCart) {
   }
 }
 
-// Update total amount and quantity
 function updateTotalDisplay() {
   const items = addedProd.querySelectorAll(".prod-item");
   let totalAmount = 0;
@@ -114,14 +110,12 @@ function updateTotalDisplay() {
   updateCartState(totalCount);
 }
 
-// Manage cart state visibility
 function updateCartState(count) {
   illustrationEmptyCart.style.display = count > 0 ? "none" : "flex";
   totalConfirm.style.display = count > 0 ? "block" : "none";
   addedProd.classList.toggle("active", count > 0);
 }
 
-// Increment/Decrement quantity
 function handleQuantityChange(btn, isIncrement) {
   const quantityDisplay = btn.parentNode.querySelector(".number");
   let quantity = parseInt(quantityDisplay.textContent);
@@ -129,7 +123,6 @@ function handleQuantityChange(btn, isIncrement) {
   quantityDisplay.textContent = quantity;
 }
 
-// Event delegation for cart button clicks
 products.addEventListener("click", (event) => {
   if (event.target.closest(".cart")) {
     toggleCartItem(event.target.closest(".cart"), true);

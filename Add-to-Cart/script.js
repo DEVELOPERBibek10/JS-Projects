@@ -76,7 +76,6 @@ function toggleCartItem(btn, addToCart) {
     btn.style.display = "none";
     btn.nextElementSibling.style.display = "flex";
 
-    // Handle remove
     item
       .querySelector(".clsBtn")
       .addEventListener("click", () => toggleCartItem(btn, false));

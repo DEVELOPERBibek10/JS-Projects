@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h1>Currency Converter</h1>
+        <div class="currency">
+          <input type="number" id="amount-one" placeholder="0" value="1" />
+          <div class="text"></div>
+          <div class="select">
+            <img id="flag-one" src="" alt="flag" width="25px" height="30px" />
+            <select class="selector" id="currency-one"></select>
+            <div class="icon">
+              <i id="icon" class="fa-solid fa-arrow-right-arrow-left"></i>
+            </div>
+            <img id="flag-two" src="" alt="flag" width="25px" height="30px" />
+            <select class="selector" id="currency-two"></select>
+          </div>
+          <input type="number" id="amount-two" placeholder="0" disabled />
+        </div>
+        <div class="buttons">
+          <button class="btn" id="btn1">Convert</button>
+          <button class="btn" id="btn2">Reset</button>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="script.js"></script>
+  <script src="counCode.js"></script>
+</html>

@@ -1,0 +1,131 @@
+@import url("https://fonts.cdnfonts.com/css/poppins?styles=20392");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+}
+
+body {
+  background-color: #000;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -100px;
+  gap: 350px;
+  background: transparent;
+  position: fixed;
+  height: 10vh;
+  width: 100vw;
+  background-color: #000;
+  z-index: 1;
+}
+
+.search-container {
+  display: flex;
+}
+
+.logo-container {
+  background: url("./Screenshot_22-8-2024_225548_www.design.com.png");
+  height: 50px;
+  width: 50px;
+  background-position: center;
+  background-size: cover;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.main-nav ul {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  list-style: none;
+  margin-right: 30px;
+}
+
+.main-nav ul li {
+  color: #fff;
+  transition: color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.nav-item.active {
+  color: #ff004f;
+}
+
+.search-container {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.search-container input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 250px;
+  background: #262626;
+  color: #fff;
+}
+
+.search-container button {
+  background: #ff004f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  color: #ff004f;
+}
+
+main {
+  padding-block: 20px;
+  margin-top: 100px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.card {
+  width: 360px;
+  min-height: 400px;
+  box-shadow: 0 0 8px #262626;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 8px #262626;
+  background: #ff004f;
+  transform: translateY(-4px);
+}
+
+.card-header img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 12px;
+}
+
+.news-source {
+  margin-block: 12px;
+}

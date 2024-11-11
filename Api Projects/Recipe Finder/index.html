@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Finder</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <i class="fa-regular fa-moon" id="light"></i>
+        <i class="fa-solid fa-moon" id="dark"></i>
+      </nav>
+    </header>
+    <main>
+      <div class="container">
+        <div class="wrapper">
+          <div class="search">
+            <h2 class="title">Find your disered food recipe by ingredients</h2>
+            <blockquote>
+              "One cannot think well, love well, sleep well, if one has not
+              dined well."
+            </blockquote>
+            <cite>— Virginia Woolf</cite>
+            <div class="searchArea">
+              <input
+                type="text"
+                placeholder="Enter ingredient"
+                id="searchBox"
+                class="search-control"
+              />
+              <button id="searchBtn" class="searchBtn btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+          </div>
+          <div class="reasult">
+            <h2 class="title">Search Results</h2>
+            <div id="meal"></div>
+          </div>
+          <div class="meal-details">
+            <button
+              type="button"
+              class="btn recipe-close-btn"
+              id="recipe-close-btn"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+            <div class="meal-details-content">
+              <!-- <h2 class="recipe-title">Meals name here</h2>
+              <p class="recipe-category">Category name</p>
+              <div class="recipe-instruct">
+                <h3>Instructions</h3>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Nulla et suscipit id voluptatum accusantium cumque quos? Saepe
+                  soluta voluptatum consequuntur non quod velit eum! Ipsa nisi
+                  quis molestiae inventore in! Aut excepturi numquam
+                  exercitationem deleniti vel reprehenderit facilis soluta
+                  molestias quod quaerat suscipit necessitatibus animi fuga
+                  nihil veniam voluptatibus iste eius consectetur nulla, illo
+                  magnam.
+                </p>
+              </div>
+              <div class="recipe-meal-img">
+                <img src="food.jpg" alt="" />
+              </div>
+              <div class="recipe-link">
+                <a href="#" target="_blank">Watch Video</a>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="script.js"></script>
+</html>

@@ -1,0 +1,1 @@
+let value = parseInt(input.innerHTML);

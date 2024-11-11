@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontend Mentor | Product list with cart</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <div class="products-container">
+        <h2>Desserts</h2>
+        <div class="products"></div>
+      </div>
+    </div>
+
+    <div class="confirmation-container">
+      <div class="confirmation-card">
+        <div class="confirm-img">
+          <img src="assets/images/icon-order-confirmed.svg" alt="" />
+        </div>
+        <div class="card-content">
+          <h2>Order confirmed</h2>
+          <p>We hope you enjoy your food</p>
+        </div>
+        <button onclick="Reset()" class="newOrder">Start New Order</button>
+      </div>
+    </div>
+    <div class="cart-section">
+      <div class="your-cart">
+        <h2>Your Cart (<span class="count">0</span>)</h2>
+        <div class="illustration-empty-cart">
+          <img src="assets/images/illustration-empty-cart.svg" alt="" />
+          <p id="empty">Your added items will appear here</p>
+        </div>
+        <div class="addedProd"></div>
+        <div class="total-confirm">
+          <div class="ttlOrder">
+            Order Total <span class="ttl">$0.00</span>
+          </div>
+          <div class="delivery">
+            <img src="assets/images/icon-carbon-neutral.svg" />
+            This is a <span>carbon-neutral</span> delivery
+          </div>
+          <div class="confirmOrder">
+            <button class="Order" onclick="confirmOrder()">
+              Confirm Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+
+</html>

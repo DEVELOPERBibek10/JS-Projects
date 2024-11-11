@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+main {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.currency {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#amount-one,
+#amount-two {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+#currency-one,
+#currency-two {
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 80px;
+  height: 35px;
+}
+
+#flag-one,
+#flag-two {
+  width: 40px;
+  height: 38px;
+  border-radius: 5px;
+}
+
+#flag-one {
+  margin-right: -25px;
+}
+
+#flag-two {
+  margin-right: -25px;
+}
+
+#icon {
+  font-size: 18px;
+  margin: 0 20px;
+  color: #777;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+button.btn {
+  background-color: #7b2cbf;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.btn:hover {
+  background-color: #5e1d8a;
+}
+
+#btn2 {
+  padding: 13px 30px;
+}
+
+/* Responsive for smaller screens */
+@media screen and (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  #currency-one,
+  #currency-two {
+    width: 70px;
+  }
+
+  #flag-one,
+  #flag-two {
+    width: 35px;
+    height: 35px;
+    margin-right: 2px;
+    border-radius: 4px;
+  }
+
+  #amount-one,
+  #amount-two {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  #icon {
+    font-size: 16px;
+  }
+
+  button.btn {
+    padding: 10px 15px;
+  }
+
+  .buttons {
+    gap: 50px;
+  }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News app</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo-container" onclick="reload()"></div>
+      <div class="search-container">
+        <input id="search-input" type="text" placeholder="E.g. Science" />
+        <button id="search-btn">Search</button>
+      </div>
+      <div class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item" id="Politics" onclick="clickNavItem('Politics')">
+            Politics
+          </li>
+          <li class="nav-item" id="Finance" onclick="clickNavItem('Finance')">
+            Finance
+          </li>
+          <li class="nav-item" id="Sports" onclick="clickNavItem('Sports')">
+            Sports
+          </li>
+          <li class="nav-item" id="Tehnology" onclick="clickNavItem('Technology')">
+            Technology
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="cards-container"></div>
+  </main>
+  <template class="template-news-card">
+    <div class="card">
+      <div class="card-header">
+        <img src="https://via.placeholder.com/400x200" alt="news-image" id="news-img" />
+      </div>
+      <div class="card-content">
+        <h3 id="news-title">This is the title</h3>
+        <h6 class="news-source" id="news-source">End Gadget 08/31/2024</h6>
+        <p class="news-desc" id="news-desc">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat
+          libero illo commodi quia, officiis nihil rem cum quaerat excepturi
+          vitae!
+        </p>
+      </div>
+    </div>
+  </template>
+</body>
+<script src="script.js"></script>
+
+</html>

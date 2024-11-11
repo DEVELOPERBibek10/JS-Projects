@@ -1,138 +1,226 @@
 const products = document.querySelector(".products");
 const addedProd = document.querySelector(".addedProd");
-const illustrationEmptyCart = document.querySelector(
-  ".illustration-empty-cart"
-);
-const totalConfirm = document.querySelector(".total-confirm");
-const totalAmountDisplay = document.querySelector(".ttl");
-const totalCountDisplay = document.querySelector(".count");
 
-// Fetch data once on page load
-document.addEventListener("DOMContentLoaded", async () => {
+async function fetchData() {
   try {
     const response = await fetch("data.json");
     const data = await response.json();
-    renderProducts(data);
+    showProducts(data);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
-});
-
-function renderProducts(data) {
-  const fragment = document.createDocumentFragment();
-
-  data.forEach((item) => {
-    const productItem = document.createElement("div");
-    productItem.className = "waffle product-item";
-    productItem.innerHTML = `
-      <div class="prod-img">
-        <img class="item-img" src="${item.image.desktop}" data-name="${item.name}" alt="${item.name}" />
-        <button class="cart" data-name="${item.name}" data-price="${item.price}">
-          <img class="cart-img" src="assets/images/icon-add-to-cart.svg" alt="Add to Cart" />
-          <p class="add-to-cart">Add to Cart</p>
-        </button>
-        <button class="increment-decrement" style="display:none;">
-          <div class="increment"><img class="plus" src="assets/images/icon-increment-quantity.svg" alt="+" /></div>
-          <p class="number">1</p>
-          <div class="decrement"><img class="minus" src="assets/images/icon-decrement-quantity.svg" alt="-" /></div>
-        </button>
-      </div>
-      <div class="prod-desc">
-        <p class="item-name">${item.category}</p>
-        <p class="item-full-name">${item.name}</p>
-        <span class="price">$${item.price}</span>
-      </div>
-    `;
-    fragment.appendChild(productItem);
-  });
-  products.appendChild(fragment);
 }
 
-function toggleCartItem(btn, addToCart) {
-  const prodName = btn.dataset.name;
-  const prodPrice = parseFloat(btn.dataset.price);
-  const cartItem = document.querySelector(
-    `.prod-item[data-name="${prodName}"]`
-  );
+// Call the function to execute
+fetchData();
 
-  if (addToCart && !cartItem) {
-    // Add item to cart
-    const item = document.createElement("div");
-    item.className = "prod-item";
-    item.dataset.name = prodName;
-    item.innerHTML = `
+function showProducts(data) {
+  let productsHTML = data
+    .map((item) => {
+      return;
+      <div class="waffle product-item">
+        <div class="prod-img">
+          <img
+            class="item-img"
+            src="${item.image.desktop}"
+            alt=""
+            data-name="${item.name}"
+          />
+          <button
+            class="cart"
+            data-name="${item.name}"
+            data-price="${item.price}"
+          >
+            <img
+              class="cart-img"
+              src="assets/images/icon-add-to-cart.svg"
+              alt=""
+              data-name="${item.name}"
+            />
+            <p class="add-to-cart">Add to Cart</p>
+          </button>
+          <button class="increment-decrement">
+            <div class="increment">
+              <img
+                class="plus"
+                src="assets/images/icon-increment-quantity.svg"
+                alt=""
+                width="6px"
+                color="#transparent"
+              />
+            </div>
+
+            <p class="number">1</p>
+            <div class="decrement">
+              <img
+                class="minus"
+                src="assets/images/icon-decrement-quantity.svg"
+                alt=""
+              />
+            </div>
+          </button>
+        </div>
+        <div class="prod-desc">
+          <p class="item-name">${item.category}</p>
+          <p class="item-full-name">${item.name}</p>
+          <span class="price">$${item.price}</span>
+        </div>
+      </div>;
+    })
+    .join("");
+  products.innerHTML = productsHTML;
+
+  const cartBtn = document.querySelectorAll(".cart");
+  const illustrationEmptyCart = document.querySelector(
+    ".illustration-empty-cart"
+  );
+  const totalConfirm = document.querySelector(".total-confirm");
+  cartBtn.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      let prodName = btn.getAttribute("data-name");
+      let prodPrice = btn.getAttribute("data-price");
+      illustrationEmptyCart.style.display = "none";
+      totalConfirm.style.display = "block";
+      const itemImg = btn.parentElement.querySelector(".item-img");
+      if (btn.getAttribute("data-name") === itemImg.getAttribute("data-name")) {
+        itemImg.classList.add("active");
+      } else {
+        itemImg.classList.remove("active");
+      }
+      addToCart(prodName, prodPrice, btn, itemImg);
+    });
+  });
+}
+
+products.addEventListener("DOMContentLoaded", showProducts);
+
+function addToCart(name, price, cartBtn, itemImg) {
+  let cartItem = (
+    <div class="prod-item" id="prod1">
       <div class="title-btn">
-        <p class="prodName">${prodName}</p>
-        <span class="clsBtn"><img src = "./assets/images/icon-remove-item.svg"></span>
+        <p class="prodName">${name}</p>
+        <span class="clsBtn">
+          <img src="assets/images/icon-remove-item.svg" alt="cross" />
+        </span>
       </div>
+
       <div class="spans">
         <span class="quantity">1x</span>
-        <span class="perPrice">@ $${prodPrice}</span>
-        <span class="perTtlPrice">$${prodPrice}</span>
+        <span class="perPrice">@ $${price}</span>
+        <span class="perTtlPrice">$${price}</span>
       </div>
-    `;
-    addedProd.prepend(item);
-    updateTotalDisplay();
-    btn.style.display = "none";
-    btn.nextElementSibling.style.display = "flex";
+    </div>
+  );
+  addedProd.insertAdjacentHTML("afterbegin", cartItem);
+  addedProd.classList.add("active");
 
-    item
-      .querySelector(".clsBtn")
-      .addEventListener("click", () => toggleCartItem(btn, false));
-  } else if (!addToCart && cartItem) {
-    // Remove item from cart
-    cartItem.remove();
-    btn.style.display = "flex";
-    btn.nextElementSibling.style.display = "none";
-    updateTotalDisplay();
-  }
-}
+  cartBtn.style.display = "none";
+  cartBtn.nextElementSibling.style.display = "flex";
 
-function updateTotalDisplay() {
-  const items = addedProd.querySelectorAll(".prod-item");
-  let totalAmount = 0;
-  let totalCount = 0;
+  const clsBtn = document.querySelector(".clsBtn");
+  let cartQty = document.querySelector(".quantity");
+  let perTtlPrice = document.querySelector(".perTtlPrice");
 
-  items.forEach((item) => {
-    const qty = parseInt(
-      item.querySelector(".quantity").textContent.replace("x", "")
-    );
-    const price = parseFloat(
-      item.querySelector(".perPrice").textContent.replace("@ $", "")
-    );
-    totalAmount += qty * price;
-    totalCount += qty;
+  clsBtn.addEventListener("click", function () {
+    clsBtn.parentElement.parentElement.remove();
+    cartBtn.style.display = "flex";
+    cartBtn.nextElementSibling.style.display = "none";
+    itemImg.classList.remove("active");
+    updateTotalQuantity();
+    updateOrderTotal();
   });
 
-  totalAmountDisplay.textContent = `$${totalAmount.toFixed(2)}`;
-  totalCountDisplay.textContent = totalCount;
-  updateCartState(totalCount);
+  handleQuantity(cartBtn.nextElementSibling, perTtlPrice, cartQty);
+  updateTotalQuantity();
+  updateOrderTotal();
 }
 
-function updateCartState(count) {
-  illustrationEmptyCart.style.display = count > 0 ? "none" : "flex";
-  totalConfirm.style.display = count > 0 ? "block" : "none";
-  addedProd.classList.toggle("active", count > 0);
+function handleQuantity(incrementDecrementBtn, perTtlPrice, cartQty) {
+  let quantityDisplay = incrementDecrementBtn.querySelector(".number");
+  let incrementBtn = incrementDecrementBtn.querySelector(".increment");
+  let decrementBtn = incrementDecrementBtn.querySelector(".decrement");
+  let quantity = 1;
+
+  quantityDisplay.innerHTML = quantity;
+
+  incrementBtn.addEventListener("click", function () {
+    quantity++;
+    quantityDisplay.innerHTML = quantity;
+    increaseCartItem(perTtlPrice, cartQty, quantity);
+  });
+
+  decrementBtn.addEventListener("click", function () {
+    if (quantity > 1) {
+      quantity--;
+      quantityDisplay.textContent = quantity;
+      decreaseCartItem(perTtlPrice, cartQty, quantity);
+    }
+  });
 }
 
-function handleQuantityChange(btn, isIncrement) {
-  const quantityDisplay = btn.parentNode.querySelector(".number");
-  let quantity = parseInt(quantityDisplay.textContent);
-  quantity = isIncrement ? quantity + 1 : Math.max(1, quantity - 1);
-  quantityDisplay.textContent = quantity;
+function increaseCartItem(perTtlPrice, cartQty, quantity) {
+  const price =
+    parseFloat(perTtlPrice.textContent.replace("$", "")) / (quantity - 1);
+  let perTPrice = (price * quantity).toFixed(2);
+  perTtlPrice.innerHTML = "$" + perTPrice;
+  cartQty.innerHTML = quantity + "x";
+  updateTotalQuantity();
+  updateOrderTotal();
 }
 
-products.addEventListener("click", (event) => {
-  if (event.target.closest(".cart")) {
-    toggleCartItem(event.target.closest(".cart"), true);
+function decreaseCartItem(perTtlPrice, cartQty, quantity) {
+  const price =
+    parseFloat(perTtlPrice.textContent.replace("$", "")) / (quantity + 1);
+  let perTPrice = (price * quantity).toFixed(2);
+  perTtlPrice.innerHTML = "$" + perTPrice;
+  cartQty.innerHTML = quantity + "x";
+  updateOrderTotal();
+  updateTotalQuantity();
+}
+
+function updateOrderTotal() {
+  const cartItems = document.querySelectorAll(".prod-item");
+  console.log(cartItems);
+  let total = 0;
+
+  cartItems.forEach((item) => {
+    const quantity = parseInt(
+      item.querySelector(".quantity").innerHTML.replace("x", "")
+    );
+    const price = parseFloat(
+      item.querySelector(".perPrice").innerHTML.replace("@ $", "")
+    );
+    total += quantity * price;
+  });
+
+  document.querySelector(".ttl").innerHTML = "$" + total.toFixed(2);
+}
+
+function updateTotalQuantity() {
+  const cartItems = document.querySelectorAll(".prod-item");
+  let orderTotal = 0;
+  cartItems.forEach((item) => {
+    const quantity = parseInt(
+      item.querySelector(".quantity").innerHTML.replace("x", "")
+    );
+    orderTotal += quantity;
+  });
+  document.querySelector(".count").innerHTML = orderTotal;
+
+  defaultState(orderTotal);
+}
+
+function defaultState(orderTotal) {
+  if (orderTotal === 0) {
+    document.querySelector(".total-confirm").style.display = "none";
+    document.querySelector(".illustration-empty-cart").style.display = "flex";
+  } else if (orderTotal >= 1 && orderTotal <= 2) {
+    addedProd.classList.remove("active");
+  } else {
+    document.querySelector(".total-confirm").style.display = "block";
+    document.querySelector(".illustration-empty-cart").style.display = "none";
   }
-  if (event.target.closest(".increment")) {
-    handleQuantityChange(event.target.closest(".increment"), true);
-  }
-  if (event.target.closest(".decrement")) {
-    handleQuantityChange(event.target.closest(".decrement"), false);
-  }
-});
+}
 
 function confirmOrder() {
   // Comfirmation Card
